@@ -87,11 +87,14 @@ func (o *Operator) handleMessage(ctx context.Context, m *pubsub.Message) {
 }
 
 func main() {
+	log.Println("Start 3141-operator")
+
 	// create new Operator configuration from environment
 	op, err := new()
 	if err != nil {
 		log.Fatalln(err)
 	}
+	log.Println("Loaded operator config.")
 
 	// create new message queue configuration from environment
 	mq := mq.NewGCP()
