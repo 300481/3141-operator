@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: 3141-operator
+  name: 3141-operator
+  namespace: 3141-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: 3141-operator
+  template:
+    metadata:
+      labels:
+        app: 3141-operator
+    spec:
+      containers:
+      - image: 300481/3141-operator:v0.1.0
+        imagePullPolicy: Always
+        name: 3141-operator
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+        envFrom:
+          - configMapRef:
+              name: 3141-operator-environment
+        volumeMounts:
+          - name: mq-auth
+            mountPath: "/auth"
+            readOnly: true
+      volumes:
+      - name: mq-auth
+        secret:
+          secretName: mq-auth
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: 3141-operator
+  namespace: 3141-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: 3141-operator-cluster-admin
+  namespace: 3141-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: 3141-operator
+  namespace: 3141-operator
