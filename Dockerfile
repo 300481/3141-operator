@@ -25,6 +25,7 @@ COPY scripts /scripts
 
 RUN apk add --no-cache \
         ca-certificates \
-        bash
+        bash \
+        git
 
 ENTRYPOINT [ "/usr/local/bin/3141-operator" ]
