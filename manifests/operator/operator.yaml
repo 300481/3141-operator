@@ -17,7 +17,7 @@ spec:
         app: 3141-operator
     spec:
       containers:
-      - image: 300481/3141-operator:v0.1.7
+      - image: 300481/3141-operator:v0.1.8
         imagePullPolicy: Always
         name: 3141-operator
         resources:
@@ -31,6 +31,7 @@ spec:
           - name: mq-auth
             mountPath: "/auth"
             readOnly: true
+      serviceAccountName: 3141-operator
       volumes:
       - name: mq-auth
         secret:
