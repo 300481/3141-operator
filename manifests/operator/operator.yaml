@@ -17,7 +17,7 @@ spec:
         app: 3141-operator
     spec:
       containers:
-      - image: 300481/3141-operator:v0.1.4
+      - image: 300481/3141-operator:v0.1.5
         imagePullPolicy: Always
         name: 3141-operator
         resources:
