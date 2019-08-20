@@ -21,6 +21,7 @@ FROM alpine:3.10.1
 WORKDIR /
 
 COPY --from=builder /usr/local/bin/ /usr/local/bin/
+COPY scripts /scripts
 
 RUN apk add --no-cache \
         ca-certificates \
