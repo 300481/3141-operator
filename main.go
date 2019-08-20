@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"errors"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -56,29 +55,10 @@ func (o *Operator) handleMessage(ctx context.Context, m *pubsub.Message) {
 
 		cmd := exec.Command(o.Command, args...)
 
-		stderr, err := cmd.StderrPipe()
-		if err != nil {
-			log.Println(err)
-		}
+		cmd.Stderr = os.Stderr
+		cmd.Stdout = os.Stdout
 
-		stdout, err := cmd.StdoutPipe()
-		if err != nil {
-			log.Println(err)
-		}
-
-		if err := cmd.Start(); err != nil {
-			log.Println(err)
-		}
-
-		stderrOutput, _ := ioutil.ReadAll(stderr)
-		stdoutOutput, _ := ioutil.ReadAll(stdout)
-
-		log.Printf("Command returned stderr: %s\n", stderrOutput)
-		log.Printf("Command returned stdout: %s\n", stdoutOutput)
-
-		if err := cmd.Wait(); err != nil {
-			log.Println(err)
-		}
+		cmd.Run()
 	} else {
 		log.Printf("No updates received for this system. SystemID: %s\n", o.SystemID)
 	}
