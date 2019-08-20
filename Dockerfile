@@ -1,4 +1,4 @@
-FROM golang:1.12.7-buster AS builder
+FROM golang:1.12.9-buster AS builder
 
 ARG KUBECTL_VERSION=v1.15.2
 ARG HELM_VERSION=v2.14.3
