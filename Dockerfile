@@ -5,7 +5,7 @@ WORKDIR /go/src/github.com/300481/cda
 COPY . .
 WORKDIR /go/src/github.com/300481/cda/cmd/cda
 RUN go get -d -v && \
-    CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o /usr/local/bin/3141-operator
+    CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o /usr/local/bin/cda
 
 ARG KUBECTL_VERSION=v1.16.2
 ARG HELM_VERSION=v2.16.0
