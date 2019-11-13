@@ -41,7 +41,7 @@ func (a *Agent) githubHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	pushMessage := payload.(github.PushPayload)
 
-	log.Println("Got Payload from:", pushMessage.Repository)
+	log.Println("Got Payload from:", pushMessage.Repository, r.Header)
 
 	// respond OK
 	w.WriteHeader(http.StatusOK)
