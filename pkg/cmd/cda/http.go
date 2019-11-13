@@ -11,6 +11,13 @@ import (
 
 func (a *Agent) routes() {
 	a.Router.HandleFunc("/github", a.githubHandler)
+	a.Router.HandleFunc("/healthz", a.healthHandler)
+}
+
+func (a *Agent) healthHandler(w http.ResponseWriter, r *http.Request) {
+	// respond OK
+	w.WriteHeader(http.StatusOK)
+	io.WriteString(w, "OK")
 }
 
 func (a *Agent) githubHandler(w http.ResponseWriter, r *http.Request) {
