@@ -10,11 +10,11 @@ import (
 )
 
 func (a *Agent) routes() {
-	a.Router.HandleFunc("/github", a.githubHookHandler)
+	a.Router.HandleFunc("/github", a.githubHandler)
 }
 
-func (a *Agent) githubHookHandler(w http.ResponseWriter, r *http.Request) {
-	log.Println("githubhook.handler:", r.Method, "request from ", r.RemoteAddr)
+func (a *Agent) githubHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("github.handler:", r.Method, "request from ", r.RemoteAddr)
 
 	// get the Secret from environment
 	secret := os.Getenv("GITHUB_SECRET")
