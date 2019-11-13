@@ -1,20 +1,14 @@
-# 3141-operator
+# cda
 
-Kubernetes Operator running commands triggered by Git Webhooks
+Continuous Deployment Agent for Kubernetes
 
 ## Configuration
 
-### Operator
+### Agent
 
-The Operator must be configured by environment variables.
+The Agent must be configured by environment variables.
 
-The commands first arguments are **Repository URL**, **Commit ID**, **Pushed at time as Unix Epoch**.
 
-The arguments specified with ARGS are attached.
-
-Environment Variable|Description                                                          |Type
---------------------|---------------------------------------------------------------------|--------
-`SYSTEM_ID`         |The ID of the system, let empty to get notifications for all systems.|*String*
-`REF`               |The Git Repo Ref, let empty to get notifications for all refs.       |*String*
-`COMMAND`           |The command to execute on notification.                              |*String*
-`ARGS`              |The arguments for the command to execute.                            |*String*
+Environment Variable|Description                                                    |Type
+--------------------|---------------------------------------------------------------|--------
+`GITHUB_SECRET`     |The secret for a GitHub Webhook.                               |*String*

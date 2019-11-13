@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/300481/3141-operator/pkg/cmd/operator"
+	"github.com/300481/cda/pkg/cmd/cda"
 	"github.com/urfave/cli"
 )
 
@@ -29,7 +29,7 @@ func commands() {
 			Aliases: []string{"s"},
 			Usage:   "Run in server mode",
 			Action: func(c *cli.Context) {
-				operator.NewOperator().Serve()
+				cda.NewAgent().Serve()
 			},
 		},
 	}

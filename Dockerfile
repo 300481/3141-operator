@@ -1,9 +1,9 @@
 # Building stage
 FROM golang:1.13.4-buster AS builder
 
-WORKDIR /go/src/github.com/300481/3141-operator
+WORKDIR /go/src/github.com/300481/cda
 COPY . .
-WORKDIR /go/src/github.com/300481/3141-operator/cmd/operator
+WORKDIR /go/src/github.com/300481/cda/cmd/cda
 RUN go get -d -v && \
     CGO_ENABLED=0 GOOS=linux go build -a -ldflags '-extldflags "-static"' -o /usr/local/bin/3141-operator
 
@@ -31,4 +31,4 @@ RUN apk add --no-cache \
 
 CMD [ "server" ]
 
-ENTRYPOINT [ "/usr/local/bin/3141-operator" ]
+ENTRYPOINT [ "/usr/local/bin/cda" ]

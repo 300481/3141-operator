@@ -1,4 +1,4 @@
-package operator
+package cda
 
 import (
 	"io"
@@ -9,11 +9,11 @@ import (
 	"gopkg.in/go-playground/webhooks.v5/github"
 )
 
-func (o *Operator) routes() {
-	o.Router.HandleFunc("/github", o.githubHookHandler)
+func (a *Agent) routes() {
+	a.Router.HandleFunc("/github", a.githubHookHandler)
 }
 
-func (o *Operator) githubHookHandler(w http.ResponseWriter, r *http.Request) {
+func (a *Agent) githubHookHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("githubhook.handler:", r.Method, "request from ", r.RemoteAddr)
 
 	// get the Secret from environment
