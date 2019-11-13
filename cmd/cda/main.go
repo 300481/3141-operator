@@ -16,20 +16,20 @@ func init() {
 }
 
 func info() {
-	app.Name = "3141 Operator"
-	app.Usage = "Kubernetes Operator running commands triggered by Git Webhooks."
-	app.Author = "Dennis Riemenschneider"
-	app.Version = "0.1.0"
+	app.Name = "Continuous Deployment Agent"
+	app.Usage = "Continuous Deployment Agent for Kubernetes, triggered by GitHub Webhooks."
+	app.Version = "0.0.0"
 }
 
 func commands() {
-	app.Commands = []cli.Command{
+	app.Commands = []*cli.Command{
 		{
 			Name:    "server",
 			Aliases: []string{"s"},
 			Usage:   "Run in server mode",
-			Action: func(c *cli.Context) {
+			Action: func(c *cli.Context) error {
 				cda.NewAgent().Serve()
+				return nil
 			},
 		},
 	}
