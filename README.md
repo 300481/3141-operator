@@ -10,7 +10,7 @@ The Agent must be configured by environment variables.
 
 Environment Variable|Description                                                    |Type
 --------------------|---------------------------------------------------------------|--------
-`GITHUB_SECRET`     |The secret for a GitHub Webhook.                               |*String*
+`GITHUB_SECRET`     |The secret for a <br> GitHub Webhook.                          |*String*
 
 ## Install the service to Kubernetes with Helm
 
